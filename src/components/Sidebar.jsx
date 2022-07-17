@@ -9,7 +9,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
 
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   const handleCloseSidebar = () => {
     if(activeMenu && screenSize <= 900) {
@@ -49,6 +49,11 @@ const Sidebar = () => {
                        key={link.name}
    //  la funzione handleCloseSidebar fa si che quando un link venga cliccato la sidebar si chiuda in mod. mobile dev.
                        onClick={handleCloseSidebar}
+                       style={({ isActive }) => ({
+                        backgroundColor: isActive ?  currentColor : '' 
+                       })}
+                       
+                       
                        className={({ isActive }) => isActive? activeLink : normalLink}
               >
                 {link.icon}
